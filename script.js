@@ -1,0 +1,128 @@
+let player;
+const params = new URLSearchParams(window.location.search);
+const list = params.get("list");
+
+function waitForYouTubeAPI() {
+  if (window.YT && window.YT.Player) {
+    onYouTubeIframeAPIReady(); 
+  } else {
+    setTimeout(waitForYouTubeAPI, 100); 
+  }
+}
+
+waitForYouTubeAPI(); 
+
+
+const nodes = {
+    playBtn: document.getElementById("music-toggle"),
+    prevBtn: document.getElementById("music-prev"),
+    nextBtn: document.getElementById("music-next"),
+    thumbnail: document.getElementById("music-logo"),
+    titleName: document.getElementById("song-name"),
+    uploader: document.getElementById("song-uploader"),
+    playbackBar: document.getElementById("playback-bar"),
+    playbackFill: document.getElementById("playback-fill"),
+    volIcon: document.getElementById("volume-icon"),
+    volWrap: document.getElementById("volume-area"),
+    volBar: document.getElementById("volume-bar"),
+    volFill: document.getElementById("volume-fill"),
+    timeDisplay: document.getElementById("playtime"),
+    playlistInput: document.getElementById("playlist-input")
+};
+
+const icons = {
+    play: "/assets/music_play.png",
+    pause: "/assets/music_pause.png",
+    volume:{
+        full:"/assets/music_volume_100.png"
+    }
+}
+
+//vol bar...
+nodes.volBar.addEventListener("mousedown", (e) => {
+    updateVolume(e.clientX);
+    const move = (e) => updateVolume(e.clientX);
+    const stop = () => {
+        document.documentElement.removeEventListener("mousemove", move,);
+        document.documentElement.removeEventListener("mouseup", stop);
+    };
+    document.documentElement.addEventListener("mousemove", move);
+    document.documentElement.addEventListener("mouseup", stop);
+});
+
+function updateVolume(x){
+    const rectang = nodes.volBar.getBoundingClientRect();
+    let vol = ((x-rectang.left) / rectang.width) * 100;
+    vol = Math.max(0, Math.min(vol,100));
+    nodes.volFill.style.width = vol + "%";
+    if(player){
+        player.unMute();
+        player.setVolume(vol);
+    }
+}
+
+
+function createPlaylist(){
+    let url = document.getElementById("playlist-input").value;
+    let urlPart = url.split("?");
+    if(urlPart.length != 2)return;
+
+    let trueUrl = "?" + urlPart[1];
+    const params = new URLSearchParams(trueUrl);
+
+    let newURL = new URL(document.location);
+    newURL.searchParams.set('list', params.get('list'));
+    newURL.searchParams.set('index',params.has('index')? params.get('index'):0);    
+    window.location.href = newURL.href;
+}
+
+
+function onYouTubeIframeAPIReady(){
+    player = new YT.Player('player', {
+        height: '200',
+        width: '200',
+        playerVars: {
+            playsinline: 1,
+            disablekb: 1,
+            list: list,
+            autoplay: params.has("autoplay") ? params.get("autoplay") :0, 
+            controls: 0,
+            loop:1
+        },
+        events: {
+            onReady: onPlayerReady,
+            onStateChange: onPlayerStateChange
+        }
+        
+        
+    });
+}
+window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+
+function onPlayerReady(event) {
+  event.target.mute();           
+  event.target.setVolume(10);
+  event.target.setLoop(true);
+  event.target.playVideo();
+  
+  setTimeout(() => {
+  player.unMute();
+}, 1000);
+}
+
+function onPlayerStateChange(event) {
+    if (event.data === YT.PlayerState.PLAYING) {
+        setTimeout(updateVideoInfo, 1000); 
+    }
+}
+
+function updateVideoInfo(){
+
+    const videoData = player.getVideoData();
+
+    const videoId = videoData.video_id || player.getVideoUrl().split("v=")[1]?.split("&")[0];
+    nodes.titleName.textContent = videoData.title || "Unknown";
+    nodes.uploader.textContent = videoData.author || "Unknown";
+
+    nodes.thumbnail.src = `https://img.youtube.com/vi/${videoId}/default.jpg`;
+}

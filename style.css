@@ -1,9 +1,9 @@
 html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    background: #F9EFF9;
-    image-rendering: pixelated;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #e0ddfe;
+  image-rendering: pixelated;
 }
 
 body{
@@ -123,6 +123,40 @@ body{
   color: #333;
   white-space: nowrap;
 }
+
+#custom-playlist{
+  padding:8px;
+  position: absolute;
+  min-width:0;
+  width:100vw;
+  height:100vh;
+  left:0;
+  top:0;
+  display:flex;
+  gap:8px;
+  align-items:center;
+  box-sizing:border-box;
+}
+
+#playlist-input{
+  padding:10px;
+  border: 2px solid;
+  border-color: whitesmoke;
+  outline:0;
+  font-size:20px;
+  flex-grow:1;
+  font-family: 'Pixelify Sans';
+}
+
+#custom-create{
+  padding: 10px 20px;
+  border-color: whitesmoke;
+  font-size:20px;
+  cursor:pointer;
+  height:46px;
+  font-family:'Pixelify Sans';
+}
+
 
 #music-prev, #music-toggle, #music-next, #music-logo, #select-playlist, #playback-bar, #volume-bar, #volume-icon {
     cursor: pointer;
