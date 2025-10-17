@@ -53,7 +53,16 @@ nodes.playBtn.addEventListener('click', function(){
       player.nextVideo();
   });
 
-
+function togglePlay(){
+    if(player.getPlayerState() === YT.PlayerState.PLAYING){
+        player.pauseVideo();
+        nodes.playBtn.src = icons.play;
+    }
+    else{
+        player.playVideo();
+        nodes.playBtn.src = icons.pause;
+    }
+}
 //vol bar...
 nodes.volBar.addEventListener("mousedown", (e) => {
     updateVolume(e.clientX);
@@ -65,17 +74,6 @@ nodes.volBar.addEventListener("mousedown", (e) => {
     document.documentElement.addEventListener("mousemove", move);
     document.documentElement.addEventListener("mouseup", stop);
 });
-
-function togglePlay(){
-    if(player.getPlayerState() === YT.PlayerState.PLAYING){
-        player.pauseVideo();
-        nodes.playBtn.src = icons.play;
-    }
-    else{
-        player.playVideo();
-        nodes.playBtn.src = icons.pause;
-    }
-}
 
 function updateVolume(x){
     const rectang = nodes.volBar.getBoundingClientRect();
@@ -96,6 +94,29 @@ function updateVolume(x){
   } else {
     nodes.volIcon.src = icons.volume.mute;
   }
+}
+
+nodes.playbackBar.addEventListener("mousedown", (e) => {
+    updatePlayback(e.clientX);
+    const move = (e) => updatePlayback(e.clientX);
+    const stop = () => {
+        document.documentElement.removeEventListener("mousemove", move,);
+        document.documentElement.removeEventListener("mouseup", stop);
+    };
+    document.documentElement.addEventListener("mousemove", move);
+    document.documentElement.addEventListener("mouseup", stop);
+});
+
+function updatePlayback(x){
+    const rectang = nodes.playbackBar.getBoundingClientRect();
+    let percent = (x - rectang.left) / rectang.width;
+    percent = Math.max(0, Math.min(percent,1));
+    
+    nodes.playbackFill.style.width = (percent * 100) + "%";
+    if(player){
+        const duration = player.getDuration();
+        player.seekTo(duration * percent, true);
+    }
 }
 
 

@@ -6,44 +6,53 @@
         <link rel = "stylesheet" href = "/style.css">
     </head>
 <body>
-     <a id = "music-left" target = "_blank" style="height: 85px;">
-            <img id = "music-logo" src="/assets/black.png" />
-        </a>
-    <div id = "music-right" style="flex-grow: 1; min-width: 0;"> 
-        <div id = "song-title">
-             <div id = "song-name">unknown;</div>
-            <img id = "select-playlist" src="/assets/playlist.png" onclick = "document.getElementById('custom-playlist').style.display = 'inherit';">
-        </div>
-        <div id = "song-uploader"></div>
-        <div id = "playback-bar">
-            <div id = "playback-fill"></div>
-        </div>
-        <div class = "knob"> </div>
-    
 
-        <div id = "details">
-        <div id = "controls">
-            <img id ="music-prev" src = "/assets/music_prev.png">
-            <img id = "music-toggle" src = "/assets/music_play.png">
-            <img id = "music-next" src= "/assets/music_next.png">
+<div id="wrapper">
+        <div id="cassette-container">
+            <img src="/assets/cassette.png" id="cassette-img">
         </div>
-        <div id = "volume-area" style="flex-grow: 1; display:flex;align-items: center;gap: 4px;">
-            <img id ="volume-icon" src="/assets/music_volume_100.png">
-            <div id = "volume-bar" style="flex-grow: 1;">
-                <div id = "volume-fill"></div>
-            <div class = "knob"></div>
+
+    <div id="playlist-section">
+        <a id = "music-left" target = "_blank" style="height: 85px;">
+                <img id = "music-logo" src="/assets/black.png" />
+            </a>
+        <div id = "music-right" style="flex-grow: 1; min-width: 0;"> 
+            <div id = "song-title">
+                <div id = "song-name">unknown;</div>
+                <img id = "select-playlist" src="/assets/playlist.png" onclick = "document.getElementById('custom-playlist').style.display = 'inherit';">
             </div>
-        </div>
-    <div id ="playtime"> 0:00 / 0:00</div>
-    </div>
-</div>
-    <div id = "custom-playlist" style= "display:none;">
-        <input id = "playlist-input" type = "text" class="search-box" placeholder = "enter playlist">
-        <button id = "custom-create" type = "submit" class="search-button" onclick = "createPlaylist()"> create </button>
-        <div style = "position: absolute; right:4px; top:4px;" onclick="document.getElementById('custom-playlist').style.display = 'none';">X</div>
-    </div>
+            <div id = "song-uploader"></div>
+            <div id = "playback-bar">
+                <div id = "playback-fill"></div>
+                <div class = "knob"> </div>
+            </div>
+        
 
-    <div id = "player"></div>
+            <div id = "details">
+            <div id = "controls">
+                <img id ="music-prev" src = "/assets/music_prev.png">
+                <img id = "music-toggle" src = "/assets/music_play.png">
+                <img id = "music-next" src= "/assets/music_next.png">
+            </div>
+            <div id = "volume-area" style="flex-grow: 1; display:flex;align-items: center;gap: 4px;">
+                <img id ="volume-icon" src="/assets/music_volume_100.png">
+                <div id = "volume-bar" style="flex-grow: 1;">
+                    <div id = "volume-fill"></div>
+                    <div class = "knob"></div>
+                </div>
+            </div>
+        <div id ="playtime"> 0:00 / 0:00</div>
+        </div>
+    </div>
+    </div>
+        <div id = "custom-playlist" style= "display:none;">
+            <input id = "playlist-input" type = "text" class="search-box" placeholder = "enter playlist">
+            <button id = "custom-create" type = "submit" class="search-button" onclick = "createPlaylist()"> create </button>
+            <div style = "position: absolute; right:4px; top:4px;" onclick="document.getElementById('custom-playlist').style.display = 'none';">X</div>
+        </div>
+
+        <div id = "player"></div>
+</div>
     <script src = "/script.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
 
