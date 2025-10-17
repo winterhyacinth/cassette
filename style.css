@@ -40,18 +40,21 @@ body{
   min-width:0;
   display: flex;
   justify-content: space-between;
+  font-family: 'Pixelify Sans';
+  
 }
 
 #song-title > div{
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: "â™ª"
 }
 
 #song-uploader {
   font-size: 14px;
   color: #555;
   overflow: hidden;
+  font-family: 'Pixelify Sans';
+
 }
 
 #playback-bar {
@@ -67,9 +70,9 @@ body{
   background: #4e4974;
 }
 #details{
-  display:flex;
-  align-items: center;
-  gap: 8px;
+   display:flex;
+    justify-content: space-between;
+    gap: 20px;
 }
 
 .knob{
@@ -156,7 +159,6 @@ body{
   height:46px;
   font-family:'Pixelify Sans';
 }
-
 
 #music-prev, #music-toggle, #music-next, #music-logo, #select-playlist, #playback-bar, #volume-bar, #volume-icon {
     cursor: pointer;

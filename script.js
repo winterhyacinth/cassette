@@ -10,8 +10,6 @@ function waitForYouTubeAPI() {
   }
 }
 
-waitForYouTubeAPI(); 
-
 
 const nodes = {
     playBtn: document.getElementById("music-toggle"),
@@ -119,7 +117,6 @@ function onPlayerStateChange(event) {
 function updateVideoInfo(){
 
     const videoData = player.getVideoData();
-
     const videoId = videoData.video_id || player.getVideoUrl().split("v=")[1]?.split("&")[0];
     nodes.titleName.textContent = videoData.title || "Unknown";
     nodes.uploader.textContent = videoData.author || "Unknown";
