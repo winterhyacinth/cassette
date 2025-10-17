@@ -1,15 +1,8 @@
+///i'm losing it i'm going cray cray
+// 
 let player;
 const params = new URLSearchParams(window.location.search);
 const list = params.get("list");
-
-function waitForYouTubeAPI() {
-  if (window.YT && window.YT.Player) {
-    onYouTubeIframeAPIReady(); 
-  } else {
-    setTimeout(waitForYouTubeAPI, 100); 
-  }
-}
-
 
 const nodes = {
     playBtn: document.getElementById("music-toggle"),
@@ -32,9 +25,23 @@ const icons = {
     play: "/assets/music_play.png",
     pause: "/assets/music_pause.png",
     volume:{
-        full:"/assets/music_volume_100.png"
+        normal: "/assets/music_volume_100.png",
+        low: "/assets/music_volume_50.png",
+        lowest: "/assets/music_volume_20.png",
+        mute: "/assets/music_volume_mute.png"
     }
 }
+
+nodes.playBtn.addEventListener('click', function(){
+      togglePlay();
+  });
+  nodes.prevBtn.addEventListener('click', function(){
+      player.previousVideo();
+  });
+  nodes.nextBtn.addEventListener('click', function(){
+      player.nextVideo();
+  });
+
 
 //vol bar...
 nodes.volBar.addEventListener("mousedown", (e) => {
@@ -57,8 +64,29 @@ function updateVolume(x){
         player.unMute();
         player.setVolume(vol);
     }
+
+    if (vol >= 50) {
+    nodes.volIcon.src = icons.volume.normal;
+  } else if (vol >= 20) {
+    nodes.volIcon.src = icons.volume.low;
+  } else if (vol > 0) {
+    nodes.volIcon.src = icons.volume.lowest;
+  } else {
+    nodes.volIcon.src = icons.volume.mute;
+  }
 }
 
+
+function timeChange(seconds){
+    const hour =  Math.floor(seconds / 3600);
+    const minute = Math.floor((seconds % 3600) / 60);
+    const second = Math.floor(seconds % 60);
+    const pad = (n) => String(n).padStart(2,'0');
+
+    return hour > 0
+        ? `${hour}:${pad(minute)}:${pad(second)}`
+        : `${minute}:${pad(second)}`;
+}
 
 function createPlaylist(){
     let url = document.getElementById("playlist-input").value;
@@ -91,8 +119,6 @@ function onYouTubeIframeAPIReady(){
             onReady: onPlayerReady,
             onStateChange: onPlayerStateChange
         }
-        
-        
     });
 }
 window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
@@ -115,7 +141,6 @@ function onPlayerStateChange(event) {
 }
 
 function updateVideoInfo(){
-
     const videoData = player.getVideoData();
     const videoId = videoData.video_id || player.getVideoUrl().split("v=")[1]?.split("&")[0];
     nodes.titleName.textContent = videoData.title || "Unknown";
