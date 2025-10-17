@@ -32,6 +32,17 @@ const icons = {
     }
 }
 
+let defaultIcon =icons.volume.normal;
+nodes.volIcon.addEventListener("click", (e) => {
+    if(player.isMuted()){
+        nodes.volIcon.src = defaultIcon;
+        player.unMute();
+    } else {
+        nodes.volIcon.src = icons.volume.mute;
+        player.mute();
+    }
+});
+
 nodes.playBtn.addEventListener('click', function(){
       togglePlay();
   });
@@ -54,6 +65,17 @@ nodes.volBar.addEventListener("mousedown", (e) => {
     document.documentElement.addEventListener("mousemove", move);
     document.documentElement.addEventListener("mouseup", stop);
 });
+
+function togglePlay(){
+    if(player.getPlayerState() === YT.PlayerState.PLAYING){
+        player.pauseVideo();
+        nodes.playBtn.src = icons.play;
+    }
+    else{
+        player.playVideo();
+        nodes.playBtn.src = icons.pause;
+    }
+}
 
 function updateVolume(x){
     const rectang = nodes.volBar.getBoundingClientRect();
