@@ -190,13 +190,13 @@ function onPlayerReady(event) {
   player.unMute();
 }, 1000);
 
-timeUpdater = setInterval(updateTime, 500);
+timeUpdater = setInterval(updateTime, 250);
 
 }
 
 function onPlayerStateChange(event) {
     if (event.data === YT.PlayerState.PLAYING) {
-        timeUpdater = setInterval(updateTime, 500);
+        timeUpdater = setInterval(updateTime, 250);
         setTimeout(updateVideoInfo, 1000); 
         } else {
     clearInterval(timeUpdater);
