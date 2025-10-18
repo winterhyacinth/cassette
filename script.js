@@ -56,8 +56,10 @@ nodes.playBtn.addEventListener('click', function(){
       player.previousVideo();
   });
   nodes.nextBtn.addEventListener('click', function(){
-      player.nextVideo();
-  });
+    const duration = player.getDuration();
+    player.seekTo(duration - 0.5, true);
+});
+
 
 function togglePlay(){
     if(player.getPlayerState() === YT.PlayerState.PLAYING){
