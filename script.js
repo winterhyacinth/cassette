@@ -172,6 +172,7 @@ function onPlayerReady(event) {
   event.target.setVolume(10);
   event.target.setLoop(true);
   event.target.playVideo();
+  nodes.playBtn.src = icons.pause;
   
   setTimeout(() => {
   player.unMute();

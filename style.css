@@ -48,7 +48,7 @@ body{
   width: 320px;
   position: absolute;
   text-align:center;
-  top: 167px; 
+  top: 163px; 
   font-size: 14px;
   font-family: 'Pixelify Sans';
   color: #1c1c1c;
@@ -73,7 +73,11 @@ body{
 #playlist-section {
   display: flex;
   width: 600px;
-  flex-direction: row; }
+  flex-direction: row;
+  background: #8797e0; 
+  padding: 12px;
+  border-radius:12px;
+  }
 
 #player{
   display:none;
@@ -100,6 +104,7 @@ body{
 #song-title {
   font-size: 20px;
   min-width:0;
+  color: #233c7e;
   display: flex;
   justify-content: space-between;
   font-family: 'Pixelify Sans';
@@ -113,7 +118,7 @@ body{
 
 #song-uploader {
   font-size: 14px;
-  color: #555;
+  color: #e0ddfe;
   overflow: hidden;
   font-family: 'Pixelify Sans';
 
@@ -185,14 +190,13 @@ body{
 
 #playtime{
   font-size: 16px;
-  color: #555;
+  color: #e0ddfe;
   white-space: nowrap;
 }
 
 #custom-playlist{
   padding:8px;
   position: absolute;
-  min-width:0;
   width:100vw;
   height:100vh;
   left:0;
@@ -219,6 +223,7 @@ body{
   font-size:20px;
   cursor:pointer;
   height:46px;
+  color:#5464bc;
   font-family:'Pixelify Sans';
 }
 
