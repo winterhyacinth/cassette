@@ -1,6 +1,9 @@
 ///i'm losing it i'm going cray cray
 // 
 let player;
+let timeUpdater;
+let seeking = false;
+
 const default_playlist = "PLqSGRtSP56Po1RuM8aN5SdfM-dJiEPR9n";
 const params = new URLSearchParams(window.location.search);
 const list = params.get("list") || default_playlist; 
@@ -122,7 +125,6 @@ function updatePlayback(x){
     }
 }
 
-
 function timeChange(seconds){
     const hour =  Math.floor(seconds / 3600);
     const minute = Math.floor((seconds % 3600) / 60);
@@ -132,6 +134,15 @@ function timeChange(seconds){
     return hour > 0
         ? `${hour}:${pad(minute)}:${pad(second)}`
         : `${minute}:${pad(second)}`;
+}
+
+function updateTime() {
+  if(player && !seeking) {
+    nodes.playbackFill.style.width = (player.getCurrentTime() / player.getDuration() * 100) + "%";
+    nodes.timeDisplay.innerText = timeChange(Math.floor(player.getCurrentTime())) + " / " + timeChange(Math.floor(player.getDuration()));
+  }
+  console.log("updateTime running");
+
 }
 
 function createPlaylist(){
@@ -147,7 +158,6 @@ function createPlaylist(){
     newURL.searchParams.set('index',params.has('index')? params.get('index'):0);    
     window.location.href = newURL.href;
 }
-
 
 function onYouTubeIframeAPIReady(){
     player = new YT.Player('player', {
@@ -179,11 +189,17 @@ function onPlayerReady(event) {
   setTimeout(() => {
   player.unMute();
 }, 1000);
+
+timeUpdater = setInterval(updateTime, 500);
+
 }
 
 function onPlayerStateChange(event) {
     if (event.data === YT.PlayerState.PLAYING) {
+        timeUpdater = setInterval(updateTime, 500);
         setTimeout(updateVideoInfo, 1000); 
+        } else {
+    clearInterval(timeUpdater);
     }
 }
 
@@ -195,5 +211,4 @@ function updateVideoInfo(){
     nodes.uploader.textContent = videoData.author || "Unknown";
     nodes.thumbnail.src = `https://img.youtube.com/vi/${videoId}/default.jpg`;
     nodes.thumbnail.parentNode.href = player.getVideoUrl();    
-
 }
