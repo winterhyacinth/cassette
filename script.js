@@ -67,6 +67,7 @@ function togglePlay(){
     else{
         player.playVideo();
         nodes.playBtn.src = icons.pause;
+        player.unMute();
     }
 }
 //vol bar...
@@ -167,7 +168,7 @@ function onYouTubeIframeAPIReady(){
             playsinline: 1,
             disablekb: 1,
             list: list,
-            autoplay: params.has("autoplay") ? params.get("autoplay") :0, 
+            autoplay: 0, 
             controls: 0,
             loop:1,
             rel:0,
@@ -185,13 +186,22 @@ function onPlayerReady(event) {
   event.target.mute();           
   event.target.setVolume(10);
   event.target.setLoop(true);
-  event.target.playVideo();
-  nodes.playBtn.src = icons.pause;
-  
-  setTimeout(() => {
-  player.unMute();
-}, 1000);
 
+  player.cuePlaylist({
+  list: list,
+  index: 0,
+  suggestedQuality: "small"
+});
+  //event.target.playVideo();
+  nodes.playBtn.src = icons.play;
+  
+  const waitForCue = setInterval(() => {
+    const data = player.getVideoData();
+    if (data && data.video_id) {
+      updateVideoInfo();
+      clearInterval(waitForCue);
+    }
+  }, 200);
 timeUpdater = setInterval(updateTime, 250);
 
 }
