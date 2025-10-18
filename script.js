@@ -169,7 +169,9 @@ function onYouTubeIframeAPIReady(){
             list: list,
             autoplay: params.has("autoplay") ? params.get("autoplay") :0, 
             controls: 0,
-            loop:1
+            loop:1,
+            rel:0,
+            modestbranding:1
         },
         events: {
             onReady: onPlayerReady,
