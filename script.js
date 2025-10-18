@@ -66,8 +66,10 @@ function togglePlay(){
     }
     else{
         player.playVideo();
+        if (player.isMuted()) {
+      player.unMute(); 
         nodes.playBtn.src = icons.pause;
-        player.unMute();
+    }
     }
 }
 //vol bar...

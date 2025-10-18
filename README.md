@@ -30,6 +30,8 @@
 
 * i also don't have too much background js knowledge compared to html and css, so i had to combine a lot of online tutorials for small aspects and manage to make them work together
 
+* unfortunately when deploying to github pages i had another problem - the videoplayer now can get ads if you skip back and forth too much. i'm going to continue working to fix this as it's an issue that only popped up once deployed. i'm pretty sure it's a problem with being deployed on github, as i transferred my code to neocities to test and that worked just fine.
+
 * learned to sync ui elements with my player state.
 
 * i definitely better understand how to layout using divs in html and control them with css - i also think i am getting better at ui! - my colors and styling look much more simplified and consistent compared to my past projects - at least in my opinion!
