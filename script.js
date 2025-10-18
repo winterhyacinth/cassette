@@ -1,8 +1,10 @@
 ///i'm losing it i'm going cray cray
 // 
 let player;
+const default_playlist = "PLqSGRtSP56Po1RuM8aN5SdfM-dJiEPR9n";
 const params = new URLSearchParams(window.location.search);
-const list = params.get("list");
+const list = params.get("list") || default_playlist; 
+
 
 const nodes = {
     playBtn: document.getElementById("music-toggle"),
@@ -191,6 +193,7 @@ function updateVideoInfo(){
     nodes.titleName.textContent = videoData.title || "Unknown";
     nodes.labelName.textContent = videoData.title || "Unknown";
     nodes.uploader.textContent = videoData.author || "Unknown";
-
     nodes.thumbnail.src = `https://img.youtube.com/vi/${videoId}/default.jpg`;
+    nodes.thumbnail.parentNode.href = player.getVideoUrl();    
+
 }
