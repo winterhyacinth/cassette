@@ -3,8 +3,8 @@
         <meta charset ="utf-8"> 
         <title> nocturne </title>
         <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
-        <link rel = "stylesheet" href = "/style.css">
-        <link rel="icon" type="image/png" href="/assets/cassettemini.png" sizes="64x64">
+        <link rel = "stylesheet" href = "./style.css">
+        <link rel="icon" type="image/png" href="./assets/cassettemini.png" sizes="64x64">
 
     </head>
 <body>
@@ -12,7 +12,7 @@
 
 <div id="wrapper">
         <div id="cassette-container">
-            <img src="/assets/cassette.png" id="cassette-img">
+            <img src="./assets/cassette.png" id="cassette-img">
               <div id="cassette-label">
                      <div id="label-song-title"></div>
              </div>
@@ -20,12 +20,12 @@
 
     <div id="playlist-section">
         <a id = "music-left" target = "_blank" style="height: 85px;">
-                <img id = "music-logo" src="/assets/black.png" />
+                <img id = "music-logo" src="./assets/black.png" />
             </a>
         <div id = "music-right" style="flex-grow: 1; min-width: 0;"> 
             <div id = "song-title">
                 <div id = "song-name"></div>
-                <img id = "select-playlist" src="/assets/playlist.png" onclick = "document.getElementById('custom-playlist').style.display = 'inherit';">
+                <img id = "select-playlist" src="./assets/playlist.png" onclick = "document.getElementById('custom-playlist').style.display = 'inherit';">
             </div>
             <div id = "song-uploader"></div>
             <div id = "playback-bar">
@@ -36,12 +36,12 @@
 
             <div id = "details">
             <div id = "controls">
-                <img id ="music-prev" src = "/assets/music_prev.png">
-                <img id = "music-toggle" src = "/assets/music_play.png">
-                <img id = "music-next" src= "/assets/music_next.png">
+                <img id ="music-prev" src = "./assets/music_prev.png">
+                <img id = "music-toggle" src = "./assets/music_play.png">
+                <img id = "music-next" src= "./assets/music_next.png">
             </div>
             <div id = "volume-area" style="flex-grow: 1; display:flex;align-items: center;gap: 4px;">
-                <img id ="volume-icon" src="/assets/music_volume_100.png">
+                <img id ="volume-icon" src="./assets/music_volume_100.png">
                 <div id = "volume-bar" style="flex-grow: 1;">
                     <div id = "volume-fill"></div>
                     <div class = "knob"></div>
@@ -59,7 +59,7 @@
 
         <div id = "player"></div>
 </div>
-    <script src = "/script.js"></script>
+    <script src = "./script.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
 
 </body>

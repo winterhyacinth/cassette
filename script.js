@@ -28,13 +28,13 @@ const nodes = {
 };
 
 const icons = {
-    play: "/assets/music_play.png",
-    pause: "/assets/music_pause.png",
+    play: "./assets/music_play.png",
+    pause: "./assets/music_pause.png",
     volume:{
-        normal: "/assets/music_volume_100.png",
-        low: "/assets/music_volume_50.png",
-        lowest: "/assets/music_volume_20.png",
-        mute: "/assets/music_volume_mute.png"
+        normal: "./assets/music_volume_100.png",
+        low: "./assets/music_volume_50.png",
+        lowest: "./assets/music_volume_20.png",
+        mute: "./assets/music_volume_mute.png"
     }
 }
 

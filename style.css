@@ -1,10 +1,3 @@
-@font-face {
-  font-family: "Gothic Pixels";
-  src: url("/assets/GothicPixels.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-
 html {
   margin: 0;
   padding: 0;
@@ -24,7 +17,7 @@ body{
   height:calc(100% - 10px * 2);
   background: #c1bfe4;
   font-family: 'Pixelify Sans';
-  cursor: url("/assets/cursor.png"), default;
+  cursor: url("./assets/cursor.png"), default;
   } 
 
 #wrapper {
@@ -236,4 +229,4 @@ body{
 }
 
 #music-prev:hover, #music-toggle:hover, #music-next:hover, #music-logo, #select-playlist, #playback-bar, #volume-bar, #volume-icon {
-    cursor: url('/assets/click.png'), pointer;
+    cursor: url('./assets/click.png'), pointer;
