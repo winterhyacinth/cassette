@@ -30,7 +30,7 @@
 
 * i also don't have too much background js knowledge compared to html and css, so i had to combine a lot of online tutorials for small aspects and manage to make them work together
 
-* unfortunately when deploying to github pages i had another problem - the videoplayer now can get ads if you skip back and forth too much. i'm going to continue working to fix this as it's an issue that only popped up once deployed. i'm pretty sure it's a problem with being deployed on github, as i transferred my code to neocities to test and that worked just fine.
+* unfortunately when deploying to github pages i had another problem --- the music player would trigger ads sometimes when pressing the next button --- but guess what!! i made it so instead of triggering nextVideo(), it would just simulate that by going towards the end of the song minus a few milliseconds so it would appear like you went to the next video when it was actually coasting on the non-ads autoplay!!
 
 * learned to sync ui elements with my player state.
 
