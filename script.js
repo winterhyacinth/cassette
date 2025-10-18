@@ -9,6 +9,7 @@ const nodes = {
     prevBtn: document.getElementById("music-prev"),
     nextBtn: document.getElementById("music-next"),
     thumbnail: document.getElementById("music-logo"),
+    labelName: document.getElementById("label-song-title"),
     titleName: document.getElementById("song-name"),
     uploader: document.getElementById("song-uploader"),
     playbackBar: document.getElementById("playback-bar"),
@@ -187,6 +188,7 @@ function updateVideoInfo(){
     const videoData = player.getVideoData();
     const videoId = videoData.video_id || player.getVideoUrl().split("v=")[1]?.split("&")[0];
     nodes.titleName.textContent = videoData.title || "Unknown";
+    nodes.labelName.textContent = videoData.title || "Unknown";
     nodes.uploader.textContent = videoData.author || "Unknown";
 
     nodes.thumbnail.src = `https://img.youtube.com/vi/${videoId}/default.jpg`;
