@@ -68,8 +68,8 @@ function togglePlay(){
     }
     else{
         if (player.isMuted()) {
-             player.unMute(); 
-    }
+         player.unMute(); 
+         }
     player.playVideo();
     nodes.playBtn.src = icons.pause;
     }
