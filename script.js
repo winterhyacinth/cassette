@@ -57,7 +57,7 @@ nodes.playBtn.addEventListener('click', function(){
   });
   nodes.nextBtn.addEventListener('click', function(){
     const duration = player.getDuration();
-    player.seekTo(duration - 0.5, true);
+     player.seekTo(duration - 1, true);
 });
 
 
@@ -67,11 +67,11 @@ function togglePlay(){
         nodes.playBtn.src = icons.play;
     }
     else{
-        player.playVideo();
         if (player.isMuted()) {
-      player.unMute(); 
-        nodes.playBtn.src = icons.pause;
+             player.unMute(); 
     }
+    player.playVideo();
+    nodes.playBtn.src = icons.pause;
     }
 }
 //vol bar...
@@ -91,10 +91,10 @@ function updateVolume(x){
     let vol = ((x-rectang.left) / rectang.width) * 100;
     vol = Math.max(0, Math.min(vol,100));
     nodes.volFill.style.width = vol + "%";
-    if(player){
-        player.unMute();
-        player.setVolume(vol);
+    if (player && player.isMuted() && vol > 0) {
+    player.unMute(); 
     }
+    player.setVolume(vol);
 
     if (vol >= 50) {
     nodes.volIcon.src = icons.volume.normal;
